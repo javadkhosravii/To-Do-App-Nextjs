@@ -22,10 +22,14 @@ const Todo = () => {
     setTodo(newTodo);
   };
 
+  const handleRemoveAll = () => {
+    setTodo([]);
+  };
+
   return (
     <div className="w-full h-full bg-red-500 flex justify-center items-center">
       <div className="w-[700px] flex-col bg-white rounded-lg m-8 gap-8">
-        <div className="w-full flex justify-center">
+        <div className="w-full h-full items-center flex justify-center">
           <input
             className={`border p-4 m-4 w-96 rounded-md outline-none`}
             type="text"
@@ -35,10 +39,18 @@ const Todo = () => {
           />
           <button
             onClick={handleAddTodo}
-            className="border w-20 rounded-md m-4 bg-green-200 hover:bg-green-400"
+            className="border w-20 h-[50px] rounded-md m-4 bg-green-200 hover:bg-green-400"
           >
-            add
+            Add
           </button>
+          {todo.length > 1 && (
+            <button
+              onClick={handleRemoveAll}
+              className="border w-[100px] h-[50px] rounded-md bg-red-200 hover:bg-red-400"
+            >
+              Remove All
+            </button>
+          )}
         </div>
         <ul className="w-full flex flex-col gap-2 justify-center items-center list-disc list-insite my-4 ">
           {todo.map((item, index) => (
@@ -51,7 +63,7 @@ const Todo = () => {
                 onClick={() => handleDeleteTodo(index)}
                 className="border w-20 h-10 rounded-md bg-red-200 hover:bg-red-400"
               >
-                delete
+                Delete
               </button>
             </li>
           ))}
